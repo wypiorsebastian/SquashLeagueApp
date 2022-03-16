@@ -1,0 +1,32 @@
+<section>
+  <form fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center center"
+        (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        ngModel
+        name="username"
+        placeholder="Nazwa użytkownika"
+        required>
+      <mat-error>Podaj nazwę użytkownika</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        ngModel
+        name="password"
+        placeholder="Hasło"
+        required>
+      <mat-error>Podaj hasło</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="loginForm.invalid"
+    >Zaloguj</button>
+  </form>
+
+</section>

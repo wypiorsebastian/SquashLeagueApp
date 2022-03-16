@@ -1,0 +1,89 @@
+<section class="signup-form">
+  <form  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px"
+         (ngSubmit)="signupUser(signupForm)" #signupForm="ngForm">
+    <mat-form-field hintLabel="Nazwa użytkownika powinna mieć conajmniej 6 znaków">
+      <input
+        type="text"
+        matInput
+        placeholder="Nazwa użytkownika"
+        ngModel
+        name="username"
+        required
+        minlength="6"
+        #usernameInput="ngModel">
+      <mat-error *ngIf="usernameInput.hasError('required')"></mat-error>
+      <mat-error>Nazwa użytkownika powinna mieć conajmniej 6 znaków</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Imię"
+        ngModel
+        name="firstName"
+        required>
+      <mat-error>Imię jest wymagane</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Nazwisko"
+        ngModel
+        name="lastName"
+        required>
+      <mat-error>Nazwisko jest wymagane</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Email"
+        ngModel
+        name="email"
+        email>
+      <mat-error>Adres email jest nieprawidłowy</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+    <input
+      type="text"
+      matInput
+      placeholder="Numer telefonu"
+      ngModel
+      name="phoneNumber"
+    required>
+  </mat-form-field>
+    <mat-form-field hintLabel="Hasło powinno mieć conajmniej 6 znaków">
+    <input
+      type="text"
+      matInput
+      placeholder="Hasło"
+      ngModel
+      name="password"
+      required
+      minlength="6"
+      #pwInput="ngModel">
+    <mat-hint align="end">{{pwInput.value?.length}} / 6</mat-hint>
+  </mat-form-field>
+    <mat-form-field>
+    <input
+      type="text"
+      matInput
+      placeholder="Potwierdzenie hasła"
+      ngModel
+      name="passwordConfirm">
+  </mat-form-field>
+    <mat-checkbox
+      label="after"
+      ngModel
+      name="agree"
+      color="primary"
+    >Akceptuję regulamin ligi</mat-checkbox>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="signupForm.invalid"
+    >Zarejestruj</button>
+  </form>
+</section>
