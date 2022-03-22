@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     LoginComponent,
     WelcomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

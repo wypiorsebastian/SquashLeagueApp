@@ -4,6 +4,7 @@
   import {map} from "rxjs/operators";
   import {User} from "../auth/models/user";
   import {ReplaySubject} from "rxjs";
+  import {AdminGuard} from "../_guards/admin.guard";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class AuthService {
       map((response: User) => {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
           this.setCurrentUser(user);
         }
       })
@@ -29,7 +29,15 @@ export class AuthService {
   }
 
   setCurrentUser(user: User) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
+  }
+
+  getDecodedToken(token: string) {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 
   logout() {

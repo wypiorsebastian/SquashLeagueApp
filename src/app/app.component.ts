@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from "./auth/models/user";
 import {AuthService} from "./_services/auth.service";
+import {AdminGuard} from "./_guards/admin.guard";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -22,5 +24,12 @@ export class AppComponent implements OnInit{
   setCurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user')!);
     this.authService.setCurrentUser(user);
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.authService.currentUser$.subscribe(( user => {
+      console.log(user);
+    }))
   }
 }
