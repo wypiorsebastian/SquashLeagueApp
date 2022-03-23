@@ -30,7 +30,10 @@ export class AuthService {
 
   setCurrentUser(user: User) {
     user.roles = [];
-    const roles = this.getDecodedToken(user.token).role;
+    //const dupa = this.getDecodedToken(user.token).roles;
+    //console.log(dupa);
+    const roles = this.getDecodedToken(user.token).roles;
+
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
@@ -38,6 +41,14 @@ export class AuthService {
 
   getDecodedToken(token: string) {
     return JSON.parse(atob(token.split('.')[1]));
+  }
+
+  getCurrentUserRole(roleName: string): boolean {
+    let roleExists;
+    this.currentUser$.subscribe(( user => {
+      roleExists = user?.roles.find(x => x === roleName);
+    }))
+    return !!roleExists;
   }
 
   logout() {
