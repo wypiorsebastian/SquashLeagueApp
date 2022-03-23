@@ -4,7 +4,6 @@
   import {map} from "rxjs/operators";
   import {User} from "../auth/models/user";
   import {ReplaySubject} from "rxjs";
-  import {AdminGuard} from "../_guards/admin.guard";
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +28,12 @@ export class AuthService {
   }
 
   setCurrentUser(user: User) {
-    user.roles = [];
-    //const dupa = this.getDecodedToken(user.token).roles;
-    //console.log(dupa);
-    const roles = this.getDecodedToken(user.token).roles;
-
-    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
-    localStorage.setItem('user', JSON.stringify(user));
+    if (user) {
+      user.roles = [];
+      const roles = this.getDecodedToken(user.token).roles;
+      Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+      localStorage.setItem('user', JSON.stringify(user));
+    }
     this.currentUserSource.next(user);
   }
 
