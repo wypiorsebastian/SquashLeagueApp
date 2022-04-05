@@ -13,8 +13,15 @@
       </ng-container>
       <ng-container *ngIf="(authService.currentUser$ | async) as  user">
         <li><a routerLink="/training">Mecz</a></li>
-        <li><a routerLink="/admin" *ngIf="isAdmin">Administracja</a></li>
-        <li><a routerLink="/training" *ngIf="isLogged">Wyloguj</a></li>
+        <li *ngIf="isAdmin">
+          <button mat-button [matMenuTriggerFor]="menu" style="font-size: 20px; padding: 0px">Administracja</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Użytkownicy</button>
+            <button mat-menu-item>Wyniki</button>
+            <button mat-menu-item>Rozgrywki</button>
+          </mat-menu>
+        </li>
+        <li><a (click)="logoutUser()" *ngIf="isLogged" class="button-link">Wyloguj</a></li>
       </ng-container>
     </ul>
   </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {AuthService} from "../../_services/auth.service";
 
@@ -7,7 +7,7 @@ import {AuthService} from "../../_services/auth.service";
   templateUrl: './sidenav-list.component.html',
   styleUrls: ['./sidenav-list.component.css']
 })
-export class SidenavListComponent implements OnInit {
+export class SidenavListComponent implements OnInit, OnDestroy {
   @Output() sidenavToggle = new EventEmitter<void>();
   userSubscription: Subscription;
   isAdmin: boolean = false;
@@ -23,7 +23,15 @@ export class SidenavListComponent implements OnInit {
     this.isAdmin = (this.authService.getCurrentUserRole('Admin') ? true : false);
   }
 
+  logoutUser() {
+    this.authService.logout();
+  }
+
   onCloseNavbar() {
     this.sidenavToggle.emit();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

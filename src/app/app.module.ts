@@ -12,8 +12,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { AdminComponent } from './admin/admin.component';
+import { UsersComponent } from './admin/users/users.component';
+import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AdminComponent } from './admin/admin.component';
     WelcomeComponent,
     HeaderComponent,
     SidenavListComponent,
-    AdminComponent
+    AdminComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,10 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

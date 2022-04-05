@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../_services/auth.service";
 import {User} from "../../auth/models/user";
 import {Subscription} from "rxjs";
@@ -8,7 +8,7 @@ import {Subscription} from "rxjs";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Output() sidenavToggle = new EventEmitter<void>();
   userSubscription: Subscription;
   isAdmin: boolean = false;
@@ -20,11 +20,20 @@ export class HeaderComponent implements OnInit {
     this.userSubscription = this.authService.currentUser$.subscribe(user =>
     {
       this.isLogged = !!user;
+      this.isAdmin = (this.authService.getCurrentUserRole('Admin') ? true : false);
     });
-    this.isAdmin = (this.authService.getCurrentUserRole('Admin') ? true : false);
+
   }
 
   onToggleSidenav() {
     this.sidenavToggle.emit();
+  }
+
+  logoutUser() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

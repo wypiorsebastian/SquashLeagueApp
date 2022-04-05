@@ -1,28 +1,33 @@
 <mat-nav-list>
   <ng-container *ngIf="!(authService.currentUser$ | async) as  user">
     <a mat-list-item routerLink="/login" (click)="onCloseNavbar()">
-      <mat-icon>input</mat-icon>
+
       <span class="nav-caption">Zaloguj</span>
     </a>
     <a mat-list-item routerLink="/signup" (click)="onCloseNavbar()">
-      <mat-icon>face</mat-icon>
       <span class="nav-caption">Rejestracja</span>
     </a>
   </ng-container>
   <ng-container *ngIf="(authService.currentUser$ | async) as  user">
   <a mat-list-item routerLink="/training" (click)="onCloseNavbar()">
-    <mat-icon>gavel</mat-icon>
     <span class="nav-caption">Mecz</span>
   </a>
     <mat-list-item *ngIf="isAdmin">
+      <button mat-button [matMenuTriggerFor]="menu" style="padding: 0px">Administracja</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Użytkownicy</button>
+        <button mat-menu-item>Wyniki</button>
+        <button mat-menu-item>Rozgrywki</button>
+      </mat-menu>
+      <!--
       <button mat-icon-button>
         <mat-icon>eject</mat-icon>
         <span class="nav-caption">Administracja</span>
       </button>
+      -->
     </mat-list-item>
   <mat-list-item>
-    <button mat-icon-button>
-      <mat-icon>eject</mat-icon>
+    <button mat-icon-button (click)="logoutUser()">
       <span class="nav-caption">Wyloguj</span>
     </button>
   </mat-list-item>

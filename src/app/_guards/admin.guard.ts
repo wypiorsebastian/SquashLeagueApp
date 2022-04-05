@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.currentUser$.pipe(
       map(user => {
-        if (user?.roles.includes('Player1')) {
+        if (user?.roles.includes('Admin')) {
           return true;
         } else {
           this.snackbar.open('Brak uprawnień', 'Ok');
