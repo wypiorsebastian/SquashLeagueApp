@@ -1,1 +1,25 @@
-<p>users works!</p>
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input matInput type="text" #filterBox (keyup)="filterTable(filterBox.value)" placeholder="Wyszukaj">
+  </mat-form-field>
+</div>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa użytkownika</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Imię</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Surname}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>Nr telefonu</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.Phone}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
