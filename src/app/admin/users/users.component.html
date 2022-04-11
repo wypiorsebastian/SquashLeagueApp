@@ -1,3 +1,4 @@
+<button mat-button>Dodaj</button>
 <div fxLayoutAlign="center center">
   <mat-form-field fxFlex="40%">
     <input matInput type="text" #filterBox (keyup)="filterTable(filterBox.value)" placeholder="Wyszukaj">
@@ -20,6 +21,18 @@
     <mat-header-cell *matHeaderCellDef>Nr telefonu</mat-header-cell>
     <mat-cell *matCellDef="let element">{{element.Phone}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Akcja</mat-header-cell>
+    <mat-cell *matCellDef="let element" class="action-link">
+      <a mat-button (click)="performEdit(element)">Edytuj</a>
+    </mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+<mat-paginator [length]="100"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               aria-label="Select page">
+</mat-paginator>
+

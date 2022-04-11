@@ -16,7 +16,7 @@
         <li *ngIf="isAdmin">
           <button mat-button [matMenuTriggerFor]="menu" style="font-size: 20px; padding: 0px">Administracja</button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>Użytkownicy</button>
+            <button mat-menu-item (click)="navigateToAdminUsers()">Użytkownicy</button>
             <button mat-menu-item>Wyniki</button>
             <button mat-menu-item>Rozgrywki</button>
           </mat-menu>
