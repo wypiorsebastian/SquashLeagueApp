@@ -4,6 +4,7 @@ import {UserForList} from "../../_models/user-for-list";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,9 @@ export class UsersComponent implements OnInit{
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -38,7 +41,7 @@ export class UsersComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  performEdit(element) {
-    console.log(element);
+  editUser(element: UserForList) {
+    this.router.navigate(['/admin/users', element.id, 'edit'] );
   }
 }

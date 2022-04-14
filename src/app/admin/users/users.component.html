@@ -24,7 +24,7 @@
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef>Akcja</mat-header-cell>
     <mat-cell *matCellDef="let element" class="action-link">
-      <a mat-button (click)="performEdit(element)">Edytuj</a>
+      <a mat-button (click)="editUser(element)">Edytuj</a>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -16,6 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
 import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
+import { EditUserComponent } from './admin/users/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
     HeaderComponent,
     SidenavListComponent,
     AdminComponent,
-    UsersComponent
+    UsersComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
