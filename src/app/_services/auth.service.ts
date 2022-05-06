@@ -4,6 +4,7 @@
   import {map} from "rxjs/operators";
   import {User} from "../auth/models/user";
   import {ReplaySubject} from "rxjs";
+  import {Role} from "../_models/role";
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class AuthService {
 
   getDecodedToken(token: string) {
     return JSON.parse(atob(token.split('.')[1]));
+  }
+
+  getRoles() {
+    return this.httpClient.get<Role[]>(this.baseUrl + "roles");
   }
 
   getCurrentUserRole(roleName: string): boolean {

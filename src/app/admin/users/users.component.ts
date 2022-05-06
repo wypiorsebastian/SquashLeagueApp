@@ -24,7 +24,6 @@ export class UsersComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUsers();
-    this.dataSource.data = this.users;
   }
 
   getUsers() {
@@ -34,7 +33,7 @@ export class UsersComponent implements OnInit{
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error => {"Error"}
+      error => {console.log(error)}
     )};
 
   filterTable(filterValue: string) {
@@ -42,6 +41,6 @@ export class UsersComponent implements OnInit{
   }
 
   editUser(element: UserForList) {
-    this.router.navigate(['/admin/users', element.id, 'edit'] );
+    this.router.navigate(['/admin/users', element.id, 'edit']);
   }
 }

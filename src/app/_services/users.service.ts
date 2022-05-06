@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserForList} from "../_models/user-for-list";
 import {User} from "../_models/user";
+import {UserForUpdate} from "../_models/user-for-update";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,5 +25,9 @@ export class UsersService {
 
   getUser(userId: string) {
     return this.httpClient.get<User>(this.baseUrl + userId);
+  }
+
+  updateUser(user: UserForUpdate) {
+    return this.httpClient.put(this.baseUrl + user, user);
   }
 }

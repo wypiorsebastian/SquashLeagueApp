@@ -1,1 +1,33 @@
-<p>edit-user works!</p>
+<form [formGroup]="userEditForm" fxLayout.lt-md="column" fxLayoutGap.gt-md="20px"  fxLayoutAlign="center center" (ngSubmit)="saveChanges()">
+  <mat-form-field>
+    <input formControlName="username" matInput placeholder="Nazwa użytkownika">
+    <mat-error>Pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="firstName" matInput placeholder="Imię">
+    <mat-error>Pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="lastName" matInput placeholder="Nazwisko">
+    <mat-error>Pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="email" matInput placeholder="Adres email">
+    <mat-error>Pole jest wymagane</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="phone" matInput placeholder="Numer telefonu">
+    <mat-error>Pole jest wymagane</mat-error>
+  </mat-form-field>
+
+  <div formArrayName="userRoles">
+    <div *ngFor="let userRole of controls; let i = index" [formGroupName]="i">
+          <input type="checkbox" formControlName="appRole" [id]="appRoles[i].id"/>
+          <input type="hidden" formControlName="appRoleId"/>
+          {{appRoles[i].name}}
+         </div>
+  </div>
+
+  <button type="submit">Zapisz</button>
+
+</form>

@@ -13,6 +13,9 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   imports: [
@@ -31,7 +34,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatDatepickerModule
   ],
   exports: [
     MatButtonModule,
@@ -49,7 +55,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatDatepickerModule
   ]
 })
 export class MaterialModule {}
