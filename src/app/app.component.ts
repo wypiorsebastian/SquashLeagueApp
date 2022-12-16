@@ -10,8 +10,8 @@ import {openRegisterFormDialog} from "./auth/signup/signup.component";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit{
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
+  @ViewChild('sidenav') sidenav;
+
 
   constructor(private observer: BreakpointObserver,
               private dialog: MatDialog) {
@@ -33,5 +33,9 @@ export class AppComponent implements AfterViewInit{
 
   registerOpen() {
     openRegisterFormDialog(this.dialog);
+  }
+
+  onToggle() {
+    this.sidenav.toggle();
   }
 }
