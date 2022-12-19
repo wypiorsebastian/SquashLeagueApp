@@ -1,6 +1,21 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
-    <p>I am the sidenav</p>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/signin">
+          <mat-icon>input</mat-icon>
+          <span class="nav-caption">Zaloguj</span>
+      </a>
+      <a mat-list-item routerLink="/signup">
+        <mat-icon>face</mat-icon>
+        <span class="nav-caption">Zarejestruj</span>
+      </a>
+      <mat-list-item>
+        <button mat-icon-button>
+          <mat-icon>eject</mat-icon>
+          <span class="nav-caption">Logout</span>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
