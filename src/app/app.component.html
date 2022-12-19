@@ -5,15 +5,17 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <div>
-        <button mat-icon-button
+        <button mat-icon-button *ngIf="isHandset"
           (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-      <div>LOGO</div>
-      <div >
-        <A routerLink="/signin">Zaloguj</A>
-        <A routerLink="/signup">Zarejestruj</A>
+      <div><a routerLink="/">LOGO</a></div>
+      <div class="toolbar-links-section" *ngIf="!isHandset">
+        <ul style="display: flex; gap: 10px" class="navigation-items">
+          <li><a routerLink="/signin">Zaloguj</a></li>
+          <li><a routerLink="/signup">Zarejestruj</a></li>
+        </ul>
       </div>
     </mat-toolbar>
     <main>
