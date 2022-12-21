@@ -19,7 +19,6 @@ export class AppComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     this.sidenav.close();
-    //this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
     this.observer.observe(Breakpoints.Handset).subscribe((res) => {
       if (res.matches) {
         this.isHandset = true;
@@ -28,7 +27,7 @@ export class AppComponent implements AfterViewInit{
       } else {
         this.isHandset = false;
         this.sidenav.mode = 'side';
-        //this.sidenav.open();
+        this.sidenav.close();
       }
     })
   }

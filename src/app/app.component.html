@@ -1,9 +1,9 @@
-<mat-sidenav-container>
+<mat-sidenav-container >
   <mat-sidenav #sidenav role="navigation">
     <app-sidenav-list></app-sidenav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()" [isHandset]="isHandset"></app-header>
+    <app-header (sidenavToggle)="sidenav.toggle()" (openRegisterDialog)="registerOpen()" [isHandset]="isHandset"></app-header>
     <div class="content" [ngClass]="isHandset ? '' : 'mat-elevation-z8'">
     <main>
       <router-outlet></router-outlet>

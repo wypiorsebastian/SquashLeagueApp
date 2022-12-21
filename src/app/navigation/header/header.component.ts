@@ -8,6 +8,7 @@ import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/co
 export class HeaderComponent implements AfterViewInit {
   @Input() isHandset: boolean = false;
   @Output() sidenavToggle = new EventEmitter<void>();
+  @Output() openRegisterDialog = new EventEmitter<void>();
 
 
   onToggleSidenav() {
