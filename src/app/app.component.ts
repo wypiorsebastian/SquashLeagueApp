@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatSidenav} from "@angular/material/sidenav";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatDialog} from "@angular/material/dialog";
 import {openRegisterFormDialog} from "./auth/signup/signup.component";
+import {openLoginFormDialog} from "./auth/signin/signin.component";
 
 @Component({
   selector: 'app-root',
@@ -35,6 +35,10 @@ export class AppComponent implements AfterViewInit{
 
   registerOpen() {
     openRegisterFormDialog(this.dialog);
+  }
+
+  loginOpen() {
+    openLoginFormDialog(this.dialog);
   }
 
   onToggle() {

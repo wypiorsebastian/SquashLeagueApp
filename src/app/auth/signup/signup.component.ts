@@ -1,29 +1,31 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {AuthService} from "../../shared/services/auth.service";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit, AfterViewInit{
   signupForm: FormGroup;
+  isHandset: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private dialogRef: MatDialogRef<SignupComponent>,
-              private breakpointObserver: BreakpointObserver) {
+              private breakpointObserver: BreakpointObserver,
+              private authService: AuthService) {
   }
   ngOnInit(): void {
-
-    this.breakpointObserver.observe([
-      Breakpoints.Handset,
-      Breakpoints.Web
-    ])
-      .subscribe(console.log);
-
     this.initForm();
+  }
+
+  ngAfterViewInit() {
+    this.breakpointObserver.observe(Breakpoints.Handset).subscribe((res) => {
+      this.isHandset = res.matches;
+    })
   }
 
   onClose() {
@@ -31,7 +33,8 @@ export class SignupComponent implements OnInit{
   }
 
   onSignup() {
-
+    this.authService.signup(this.signupForm.value).subscribe(x => x,
+      error => console.log(error));
   }
 
   initForm() {
@@ -45,6 +48,10 @@ export class SignupComponent implements OnInit{
       'passwordConfirm': new FormControl(null, [Validators.required, this.matchValues('password')]),
       'agree': new FormControl(null, Validators.requiredTrue)
     });
+
+    this.signupForm.controls['password'].valueChanges.subscribe(() => {
+      this.signupForm.controls['passwordConfirm'].updateValueAndValidity();
+    })
   }
 
   matchValues(matchTo: string): ValidatorFn {

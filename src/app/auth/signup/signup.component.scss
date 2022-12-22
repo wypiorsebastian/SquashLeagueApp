@@ -3,6 +3,17 @@ mat-dialog-content {
   flex-direction: column;
 }
 
-.signup-form {
-  min-width: 300px;
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
 }
+
+.dialog {
+  min-width: 400px;
+}
+
+.dialog-handset {
+  min-width: 300px;
+  padding-bottom: 10px;
+}
+

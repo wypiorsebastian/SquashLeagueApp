@@ -9,12 +9,12 @@ export class HeaderComponent implements AfterViewInit {
   @Input() isHandset: boolean = false;
   @Output() sidenavToggle = new EventEmitter<void>();
   @Output() openRegisterDialog = new EventEmitter<void>();
+  @Output() openLoginDialog = new EventEmitter<void>();
 
 
   onToggleSidenav() {
     this.sidenavToggle.emit();
   }
-
   ngAfterViewInit(): void {
 
   }

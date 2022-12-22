@@ -1,21 +1,21 @@
-<div class="dialog">
+<div [ngClass]="isHandset ? 'dialog-handset' : 'dialog'">
   <h2 mat-dialog-title>Rejestracja</h2>
   <mat-dialog-content [formGroup]="signupForm">
     <mat-form-field hintLabel="Nazwa użytkownika powinna mieć conajmniej 6 znaków">
       <input
         type="text"
         matInput
-        placeholder="Nazwa użytkownika"
+
         ngModel
         formControlName="username">
       <!--      <mat-error *ngIf="signupForm.get('username').hasError('required')">Nazwa użytkownika jest wymagana</mat-error>-->
       <!--      <mat-error *ngIf="signupForm.get('username').hasError('minLength')">Nazwa użytkownika powinna mieć conajmniej 6 znaków</mat-error>-->
     </mat-form-field>
     <mat-form-field>
+      <mat-label>Imię</mat-label>
       <input
         type="text"
         matInput
-        placeholder="Imię"
         ngModel
         formControlName="firstName"
       >
@@ -29,7 +29,7 @@
         ngModel
         formControlName="lastName"
         required>
-      <!--      <mat-error>Nazwisko jest wymagane</mat-error>-->
+        <mat-error>Nazwisko jest wymagane</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
@@ -39,7 +39,7 @@
         ngModel
         formControlName="email"
         email>
-      <!--      <mat-error>Adres email jest nieprawidłowy</mat-error>-->
+        <mat-error>Adres email jest nieprawidłowy</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
@@ -67,8 +67,8 @@
         placeholder="Potwierdzenie hasła"
         ngModel
         formControlName="passwordConfirm">
-      <!--      <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('isMatching')">-->
-      <!--        Hasło i potwierdzenie hasła nie są takie same</mat-error>-->
+        <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('isMatching')">
+          Hasło i potwierdzenie hasła nie są takie same</mat-error>
     </mat-form-field>
     <mat-checkbox
       label="after"
@@ -81,8 +81,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="onSignup()">Zarejestruj</button>
+    <button mat-raised-button color="primary" (click)="onSignup()" [disabled]="signupForm.invalid">Zarejestruj</button>
     <button mat-raised-button (click)="onClose()">Anuluj</button>
-
   </mat-dialog-actions>
 </div>
